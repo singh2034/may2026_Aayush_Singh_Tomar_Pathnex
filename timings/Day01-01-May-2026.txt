@@ -1,0 +1,4 @@
+# What I did today?
+1. Took 2 hour live class of Neeraj Dhankar sir from 7AM to 9AM about the Devops class and Intro.
+2. Practiced and take a look at the various Linux Commands for 1 Hour - Took a deep understanding in Manual Page of Linux and Commands Flags for multiple uses.
+3. 10 Minute Docker Documentation and 10 Min AWS Documentation for Basic Knowledge.
