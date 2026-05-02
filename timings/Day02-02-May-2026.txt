@@ -1,0 +1,13 @@
+# What I did today?
+1. Took 2 hour live class of Neeraj Dhankar sir from 7AM to 9AM about the Devops class and Intro.
+2. Learnt IP Addresses, what is gateway, dns, broadcast, public ip and private ip, cidr, subnet and subnetting.
+3. Checked my IP on what is my IP and checked it - it is a public IP
+4. Get some knowledge about MAC address
+Private IP range - Must study  - Notes in my note book
+5. Overlapping VPC pairing is not allowed when CIDR or IP is same.
+
+Homework :- 
+VPC pairing in AWS account :- create a same cidr range and pair VPC
+6. Practiced Linux commands as per the Neeraj's Docs.
+7. Semi-Automated Git push commands using small bash script.
+8. Learnt About chmod commands in the file permissions.
