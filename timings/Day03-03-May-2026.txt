@@ -1,0 +1,7 @@
+# What I did today?
+1. Took 2 hour live class of Neeraj Dhankar sir from 7AM to 9AM about the Devops class and Intro.
+2. Learnt Linux basic commands for file permissions, vim editor, file editor, bulk directory making and removing, file making and removing, meta-data xattr file name command use.
+3. Basic knowledge on meta data using extended attribute and xattr command usage - xattr filepath/filename.
+4. Data reading as a human and as a machine - ls -lh ls -lhS, data and file sorting in the terminal.
+5. Usage of terminals, LLM models such as OpenAI and Gemini or more.
+6. Difference between servers and UI based systems. 
