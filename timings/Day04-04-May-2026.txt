@@ -1,0 +1,5 @@
+# What I did today?
+1. Took 3 hour live class of Neeraj Dhankar sir from 7AM to 10AM about the Devops class and Intro.
+2. Practiced Linux commands on ec2 with Neeraj Dhankar, learnt about file permissions, groups, wheel groups, chown for changing ownership.
+3. Adding to the group for security measures, ssh, authfiles, public & private key and password auth files.
+4. Practices by my own in the ec2 instances, and practiced it using terraform.
