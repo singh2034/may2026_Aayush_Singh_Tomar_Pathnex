@@ -1,0 +1,3 @@
+# What I did today?
+1. I took class in the morning from 7 AM to 9 AM today, Topics covered so far were - Terraform, SSH, SCP, CPU Monitoring commands, Process management, grep.
+2. I have practices all of them, in the EC2 instances.
