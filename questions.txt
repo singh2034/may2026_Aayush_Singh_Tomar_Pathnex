@@ -1,0 +1,6 @@
+#Git questions
+1. What is rebase vs merge?
+2. what is hotfix?
+3. what is cherrypick?
+4. what are the types of branching strategies, and which one do you use?
+5. what is .gitignore?
