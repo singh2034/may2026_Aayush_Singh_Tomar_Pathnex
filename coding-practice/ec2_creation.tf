@@ -14,8 +14,11 @@ provider "aws" {
 resource "aws_instance" "myserver" {
   ami = "ami-02eb0c2388ee999f9"
   instance_type = "t3.micro"
+  count = 1
+  key_name = "ec2-aayush-pathnex"
+  subnet_id = ""
   
   tags = {
-    Name = "SampleServer"
+    Name = "myserver"
   }
 }

@@ -1,0 +1,7 @@
+# What I did today?
+1. Took 3 hour live class of Neeraj Dhankar sir from 7AM to 10AM on the topic of git and git hub covered various things as below.
+2. Learn about git, github and git branches.
+3. What is pull request and push request.
+4. What is branching, main branch, dev branch, testing branch.
+5. How to initialize git in ec2 - install git, git init, git status, git add . or a specific file, git commit -a -m "commit name".
+6. Using git restore for restoring the file content.
