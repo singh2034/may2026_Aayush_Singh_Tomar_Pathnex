@@ -5,6 +5,5 @@
 4. What is branching, main branch, dev branch, testing branch.
 5. How to initialize git in ec2 - install git, git init, git status, git add . or a specific file, git commit -a -m "commit name".
 6. Using git restore for restoring the file content.
-7. How to create branch - git checkout branch <branch-name> & git checkout <branch-name> for branch switch.
-8. How to merge a branch - git merge <branch-name> and then just git add,commit & push.
-9. 
+7. How to create branch - git branch <branch-name> & git checkout <branch-name> for branch switch.
+8. How to merge a branch - git merge <branch-name> and then just git add,commit & push. 
