@@ -1,0 +1,7 @@
+# What I did today?
+1. Took 2.5 hour live class of Neeraj Dhankar sir from 7AM to 9:30 AM on the topic of AWS.
+2. Learnt 4 topics which are :- EC2, IAM, VPC & S3.
+3. EC2 stands for elastic compute cloud, and used as a VM over the cloud.
+4. IAM stands for Identity Access Management and used a user management tool to give access to whom and what type of access.
+5. VPC stands for Virtual Private Cloud & used as a public private internet gateway tool. For the private it uses the NAT -> Internet Gateway  and for the public it uses the internet gateway -> www.
+6. S3 stands for Simple storage service and used as a external storage in the EC2 instances.
