@@ -1,0 +1,35 @@
+# What I did today?
+1. Took 2.5 hour live class of Neeraj Dhankar sir from 7AM to 9:30 AM on the topic of AWS.
+2. 4 things are important in the domain name system - A, AAAA, CNAME - Canonical Name, MX - Mail, TXT.
+
+# Record types - Route 53
+1. Record type is for pointing the ip to the domain.
+2. Simple routing means simple. 
+3. Weighted routing means condition where we can transfer the traffic of the domain e.g. 50-50 ratio or 60-70 ratio.
+4. Geofencing routing - meant for ip routing for geographical area wise.
+5. Web Proxy - meant for only web application - Traffic passes through main host and uses the web proxy to access the banned websites.
+
+# Cloud Trail
+1. Tracks user activity and changes made to aws resources.
+2. Logs are stored in S3 for security analysis.
+3. Used a cloud monitoring tool.
+
+# Cloud Watch
+1. used for monitoring in the aws.
+2. observality for the aws services.
+3. collect logs, metrics, activity and provide alerts.
+
+# Auto Scalability
+1. Resources will either increase or decrease as per the load and usage.
+
+# Lambda
+1. Serverless compute service that runs code in response to events.
+2. It will only charge the money for how much time for it is ran in it.
+3. Ideal for event driven architecture or for microservices such as api.
+4. Max time 900 seconds or Min 3 seconds for the executions.
+question - Can we increase the time of it.
+
+# AWS sheild
+1. Give protection against DDOS attack.
+
+
