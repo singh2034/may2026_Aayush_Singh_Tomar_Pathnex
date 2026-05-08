@@ -1,35 +1,30 @@
 # What I did today?
 1. Took 2.5 hour live class of Neeraj Dhankar sir from 7AM to 9:30 AM on the topic of AWS.
-2. 4 things are important in the domain name system - A, AAAA, CNAME - Canonical Name, MX - Mail, TXT.
-
-# Record types - Route 53
-1. Record type is for pointing the ip to the domain.
-2. Simple routing means simple. 
-3. Weighted routing means condition where we can transfer the traffic of the domain e.g. 50-50 ratio or 60-70 ratio.
-4. Geofencing routing - meant for ip routing for geographical area wise.
-5. Web Proxy - meant for only web application - Traffic passes through main host and uses the web proxy to access the banned websites.
-
-# Cloud Trail
-1. Tracks user activity and changes made to aws resources.
-2. Logs are stored in S3 for security analysis.
-3. Used a cloud monitoring tool.
-
-# Cloud Watch
-1. used for monitoring in the aws.
-2. observality for the aws services.
-3. collect logs, metrics, activity and provide alerts.
-
-# Auto Scalability
-1. Resources will either increase or decrease as per the load and usage.
-
-# Lambda
-1. Serverless compute service that runs code in response to events.
-2. It will only charge the money for how much time for it is ran in it.
-3. Ideal for event driven architecture or for microservices such as api.
-4. Max time 900 seconds or Min 3 seconds for the executions.
-question - Can we increase the time of it.
-
-# AWS sheild
-1. Give protection against DDOS attack.
 
 
+2. AWS Session Manager — Securely connect to EC2 instances without SSH keys or opening port 22. 
+	Example: Admin logs into a private EC2 instance from the AWS Console.
+
+3. Amazon Route 53 — AWS DNS service used to route users to applications and domains. 
+	Example: Routing example.com traffic to an EC2-hosted website.
+
+4. AWS CloudTrail — Records and monitors AWS account API activity for auditing and security. 
+	Example: Tracking who deleted an S3 bucket.
+
+5. Amazon CloudWatch — Monitors AWS resources, logs, and metrics in real time. 
+	Example: Sending an alert when EC2 CPU usage exceeds 80%.
+
+6. AWS Auto Scaling — Automatically increases or decreases resources based on demand. 
+	Example: Adding more EC2 instances during high website traffic.
+
+7. AWS Lambda — Runs serverless code without managing servers. 
+	Example: Automatically resizing images uploaded to S3.
+
+8. AWS Shield — Protects applications from DDoS attacks. 
+	Example: Defending a public website from traffic flooding attacks.
+
+9. AWS WAF (Web Application Firewall) — Filters and blocks malicious HTTP/HTTPS web traffic. 
+	Example: Blocking SQL injection attacks on a web app.
+
+10. Amazon GuardDuty — Threat detection service that monitors AWS accounts and workloads for suspicious activity. 
+	Example: Detecting unauthorized crypto-mining activity on EC2.
