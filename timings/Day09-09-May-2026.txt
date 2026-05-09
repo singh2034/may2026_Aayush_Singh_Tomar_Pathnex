@@ -1,0 +1,19 @@
+# What I did today?
+1. Attended 3 hours of class from 7AM to 10 AM in the morning and covered the topics related to AWS.
+
+2. AWS Inspector :- It inspects the resources of AWS such as EC2 Instances, Container Images & Lambda Functions for the security Vulnerabilites.
+3. AWS KMS : Key Management Service managing encryption keys for securing data within AWS. It has 2 keys type, symetric and Asymetric. Symetric used only one key for the auth and Asymetric used 2 keys that is public & private for better security.
+4. AWS Systems Manager :- Automates Operational tasks and manages AWS infrastructures. for example :- It manages configuration, patching in it.
+5. RDS :- Relational Database Service, it provides db platforms to use such as mysql, postgresql, and MariaDB.
+6. Aurora :- Is another RDBMS but it 5x times faster than postgres and 2x times faster than MySql.
+7. DyanamoDB :- It is a database but it non-relational, like it doesnot have any tables or relations. It uses key-value pair to store or find anything in the db.
+8. Redshift :-  It is a warehouse, where we run big data queries for complex data sets, than transfer those sets to a normal db.
+9. DMS :- Stands for Database migration service, which helps us to migrate one db to another db or to another server of DB.
+10. Batch :- efficiently runs batch processing workloads at scale.
+11. Glue :- It is for to manage big data sets where we use ETL method - extract the data, transform the raw data into something meaningful as per the requirement, and then load the data into the db servers.
+12. EFS :- Elastic File System, it is a autoscalable file storage for ec2 instances, like if there is a need to increase the storage it will do it automatically.
+13. Cloudfront :- its purpose is content delivery network for faster delivery of the network traffic.
+14. Codepipeline :- meant for building the pipelines for the projects.
+15. codebuild :- it makes the raw coded file into the meaningful binary format for the server and systems.
+16. CodeDeploy :- where we deploy our codes with the help of CI/CD pipelines.
+17. X-ray :- is for debugging or for finding any issues in the codes or in the microservices or in the projects.
