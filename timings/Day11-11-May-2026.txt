@@ -1,0 +1,10 @@
+# What I did today?
+1. Attended today's morning session from 7 AM to 10:30 AM for the new topic Docker & Container.
+2. What is container - Containers are way to package an application and its dependencies in a consistent environment, regardless of the host system.
+3. Containers are Isolated from the host system means, it cannot be interacted with other containers until acted upon.
+4. What is docker file :- It is a script file that contains a series of instructions on how to build a docker image.
+5. What is an Image :- A docker image is a read-only template that contains the code, runtime environments, variables, and config files. It is built from docker file.
+6. What is docker compose :- Docker compose is a file to run multiple containers of the same application or of the different applications.
+7. Docker registry :- It is a where docker images are stored and it can containers multiple images.
+8. Networking :- Docker containers are isolated by network by default. There are four types of networking it follows :- bridge network, host network, overlay & None.
+9. Volumes :- Volumes are persistent storage in Docker containers. By default, all data in a container is vulnerable, ( all data will be lost when it is removed ). But we can use the volumes to give it a permanent storage to store the data.
