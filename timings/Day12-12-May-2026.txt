@@ -1,0 +1,27 @@
+# What I did today?
+1. Took 3 hours of morning class on the topic of Kubernetes and covered these topics :- 
+2. Kubernetes → Open-source platform used to automate deployment, scaling, and management of containers.
+3. Container Orchestration → Automatic management of containers across multiple servers.
+4. Cluster → Group of machines working together to run applications.
+5. Control Plane (Master Node) → Brain of Kubernetes that manages the cluster.
+6. Worker Node → Machine where application containers and pods run.
+7. Pod → Smallest deployable unit in Kubernetes that contains one or more containers.
+8. API Server (kube-apiserver) → Main entry point that handles all Kubernetes communication.
+9. etcd → Distributed key-value database storing cluster state and configuration.
+10. Controller Manager → Continuously checks and maintains the desired cluster state.
+11. ReplicaSet Controller → Keeps the required number of pod replicas running.
+12. Deployment Controller → Manages application deployments and rolling updates.
+13. Job Controller → Executes batch and one-time tasks.
+14. Node Controller → Monitors worker nodes and handles node failures.
+15. Scheduler (kube-scheduler) → Assigns pods to the most suitable worker nodes.
+16. Cloud Controller Manager → Integrates Kubernetes with cloud provider services.
+17. Scaling → Increasing or decreasing application instances based on demand.
+18. Load Balancing → Distributing traffic evenly across application instances.
+19. Desired State → The expected configuration and running condition defined for the cluster.
+20. Networking → Communication system between pods, services, and external traffic.
+21. Storage Management → Handling persistent data storage for applications.
+22. Deployment → Process of releasing and running applications in the cluster.
+23. Replica → Copy of a pod used for high availability and scaling.
+24. REST Request → HTTP request used to communicate with Kubernetes APIs.
+25. Affinity Rules → Rules that influence where pods should run.
+26. Constraints → Limits or conditions used for pod scheduling decisions.
