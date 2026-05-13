@@ -1,0 +1,5 @@
+# What I did today?
+1. Took 3 hours of class on EKS practical.
+2. learnt about versions, nodes, pricing and machines.
+3. Learnt about the TCP IP and UDP IP protocols communication.
+4. Kubernetes versions and extended versions in AWS eks testing face as well.
