@@ -1,0 +1,7 @@
+# What I did today?
+1. A deployment in kubernetes is to manage a group of pods and controlling their life cycle. It ensures that the desired number of pods are running and replaces the failed pods. Deployment provides - Scaling, rollback and rolling updates.
+2. Replicasets: A replicaset ensures that a number of replica pods are running at any given time. It works alongside deployments to manage the scaling and health of apps.
+3. stateful sets: It is used for managing stateful applications that require persistent storage like databases. 
+4. Daemon sets : - it ensures that a particular pod or  all pods are running in healthy condition, it is mainly used for loggind and monitoring.
+5. cron jobs :- It used to run a specific job or a group of job at the scheduled time. also known as automation and it is as same linux cronjobs
+6. Ingress:- basically it manages the external hits on the domain or on the applications which are running clusters.
