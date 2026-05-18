@@ -1,0 +1,110 @@
+# install nginx using ansible
+
+---
+- name: Install Nginx
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install nginx
+      yum: 
+        name: nginx
+        state: present
+
+# terraform task - create ec2
+
+provider "aws" {
+    region = "us-east-1"
+}
+
+resource "aws_instance" "pathnexEC2" {
+    ami = "ami-0abcd1234ami0abcd"
+    instance_type = "c5.xlarge"
+
+tags = {
+    Name = "Pathnex-EC2"
+} 
+
+}
+
+# kubernetes = create replica
+
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+    name: nginx-deployment
+
+
+spec: 
+    replicas: 2
+
+    selector: 
+        matchlabels: 
+            app: nginx
+
+    template:
+        metadata:
+            labels:
+                app: nginx
+
+        spec:   
+            containers:
+            - name: nginx
+              image: nginx:latest
+
+              ports:
+              - containerPort: 80
+
+
+
+# shell script  = print date + uptime
+
+#!/bin/bash
+
+echo "Current Date:"
+date
+
+echo ""
+
+echo "System Uptime:"
+uptime
+
+
+# Jenkins Pipeline - parameterized
+
+pipeline {
+    agent any
+    parameters {
+        string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Deployment Environment')
+    }
+    environment {
+        INSTITUTE_NAME = "Pathnex"
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/Pathnex/sample-java-app.git'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'echo "Deploying to $ENVIRONMENT by $INSTITUTE_NAME"'
+            }
+        }
+    }
+}
+
+# GitLab CI — Parameterized via gitlab
+
+stages:
+  - deploy
+
+variables:
+  INSTITUTE_NAME: "Pathnex"
+  ENVIRONMENT: "dev"
+
+deploy:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - echo "Deploying to $ENVIRONMENT by $INSTITUTE_NAME"
