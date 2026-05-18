@@ -94,7 +94,7 @@ pipeline {
     }
 }
 
-# GitLab CI — Parameterized via gitlab
+# GitLab CI — Parameterized via gitlab CICD
 
 stages:
   - deploy
