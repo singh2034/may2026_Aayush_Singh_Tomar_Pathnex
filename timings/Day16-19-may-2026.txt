@@ -1,0 +1,19 @@
+# What I did today?
+1. Attended Morning session from 7 AM to 11 AM on HELM and HELM Practical.
+2. Learnt about Helm, Helm is a package manager for kubernetes application. It manages deploying, configuring and mainting the complex application of kubernetes cluster.
+3. Helm is like a package manager for Kubernetes applications, like apt is for Debian and brew is for macos and winget is for windows. Helm makes it easier to define, install, upgrade application on kubernetes.
+4. At the core of the helm is the concept of Helm Charts. A Helm chart is a pre-configured package of kubernetes resources (like deployments, services, config maps etc.) which can be deployed to a kubernetes cluster.
+5. Key component of helm :- 
+	1. Helm Client - It is a interactive cli tool, that we use to manage charts and release applications.
+	2. Helm chart - A collection of files that describe a kubernetes application, including configuration and deployment.
+	3. Helm repo - A location where helm charts are stored and shared.
+	4. Helm release - a specific instance of helm chart deployed to a kubernetes cluster. when we install it in cluster, it creates a release.
+6. Why use helm?
+	- Simplifies deployment - instead of writing kubernetes yaml files for each resource, helm provides pre-configured charts that we can easily use.
+	- Version control - Helm allows us to manage versions of applications.
+	- Configuration management - It uses values files that allows us to customize them for the specific needs.
+	- reusable and shareable - we donot have to create one thing again and again, just make it once and we can use and share to the others for their usecase.
+7. How helm works ? 
+	- Creating a helm chart - a helm chart contains several files with chart.yaml being the primary one.
+	- Installing a chart - when we use helm to install a chart, it renders  the templates with values and sends the resulting kubernetes yaml to your cluster. 
+	- Upgrading and Managing releases - Helm allows us to upgrade our application to a newer version and can rollback to the previous version.
