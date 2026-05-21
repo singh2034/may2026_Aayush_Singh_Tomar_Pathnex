@@ -1,0 +1,52 @@
+# What I did today?
+1. Viewed Youtube video of argoCD of Neeraj
+2. What is Argo CD?
+ 	- Argo CD stands for Argo Continuous Delivery
+	- It is a declarative tool for kubernetes
+	- it continuously monitors the git and sync from the repository and made changes to the clusters.
+	- it uses git as a source of truth for the infrastructure and application defination.
+
+3. Why use argo CD?
+	- Git based single source of truth
+	- automates application deployment, rollback and drift correction.
+	- Provides both ui and cli.
+	- good visibility and auditability.
+
+4. Core concepts
+	-> Gitops: 
+	- Git is the source of all deployments.
+	- any change is done via git commits.
+	
+	-> Applications:
+	- Main object is argo cd
+	- define what to deploy, where and how.	
+	
+	-> Sync
+	- argo cd compares actual vs desired state of the kubernetes cluster.
+	- if there's a difference, it syncs automatically and manually.
+
+	=> Health Status
+	- Healthy, degraded, progressing, missing.
+
+	=> sync status:
+	- synced, outofsync, unknown.
+
+5. Argo CD architecture
+	=> API Server - Handles CLI, UI & API
+	=> Repository server  - Clones and read repository.
+	=> Application Controller - Reconciles desired state with actual state.
+	=> Dex - Provides authentication such as SSO, LDAP or OneAuth.
+
+6. Installing argo CD
+	:- Prequisite - Kubernetes Cluster and kubectl configured.
+	
+	=> Installation
+	- kubectl create namespace argocd
+	- kubectl apply -n argocd -f <link>
+	
+	=> Access ArgoCD UI:
+	- kubectl port-forward svc/argocd-server -n argopod 8080:443
+	- visit https://localhost:8080
+	
+	=> Get Admin Password
+	- kubectl get secret argocd-initial-admin-secret -n argopod -o yaml
