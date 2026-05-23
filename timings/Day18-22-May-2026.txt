@@ -1,0 +1,7 @@
+# What I did today?
+1. I have attended the class from youtube of today.
+2. Learnt about terraform and kubernetes.
+3. After successful creation, stateful file updates in the directory.
+4. Interview Question - You want to create 4 identical resources,  what will you use count or for each? Explain.
+5. Count vs For Each method
+6. I have done practical on terraform questions then I have made an EC2 instance, s3 bucket, 
