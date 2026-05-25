@@ -1,0 +1,97 @@
+# Jenkinsfile - With git Integration and Testing
+
+pipeline {
+    agent any
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/pathnex/sample-repo.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building project from git repository'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running unit tests'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application'
+            }
+        }
+    }
+}
+
+# Gitlab CI/CD - With Docker Build
+
+stages:
+    - build
+    - push
+    - deploy
+
+build:
+    stage: build
+    script:
+        - docker build -t pathnexa-app .
+
+push:
+    stage: push
+    script:
+        - docker push pathnex-app
+
+deploy:
+    stage: deploy
+    script:
+        - kubectl apply -f kubernetes/deployment.yaml
+
+# Ansible - Create user and set permissions
+---
+- name: create a new user
+  hosts: all
+  become: yes
+  
+  tasks:
+    - name: create user
+      user:
+        name: pathnex
+        state: present
+        shell: /bin/bash
+
+    - name: set permissions for the user
+      file:
+        path: /home/pathnex
+        owner: pathnex
+        group: pathnex
+        mode: '0755'
+
+# Terraform - EC2 with tags and volume
+
+resource "aws_instance" "PathnexEC2" {
+    ami = "ami-0abcd12340abcd1234"
+    instance_type = "t2.medium"
+
+    tags = {
+        Name = "Pathnex-server"
+    }
+
+    ebs_block_device {
+        device_name = "/dev/sdh"
+        volume_size = 50
+    }
+}
+
+# Docker - python application
+print("Hello world")
+
+# Docker File
+FROM python:3.12
+WORKDIR /opt/pathnex/python-app
+COPY app.py /opt/pathnex/python-app/
+CMD["python", "/opt/pathnex/python-app/app.py"]
+
+# Real path
+/opt/pathnex/python-app
