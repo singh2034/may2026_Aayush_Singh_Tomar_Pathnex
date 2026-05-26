@@ -1,0 +1,21 @@
+# What I did today?
+1. Attended 4 hours moring session from 7AM to 11AM on CI/CD, GitLab CI/CD, Jenkins, Maven.
+2. Learnt about what is CI/CD?
+	- CI is continous integration that allows the users to upload or push their codes into a shared repository multiple times a day.
+	- CD is Continuous Delivery that allows the users to deliver their code to environments like production, testing or debugging etc. with the help of humans.
+	- CD is Continuous Deployment that allows the users to deploy their codes to production environments after all tests are passed but automatically.
+3. What is GitLab CI/CD? - An application which allows us to use their platform to apply the CI/CD. It uses yaml language for the communication
+4. What is Jenkins? - It is a free open source automation server that automates the software development lifecycle by allowing us to use the CI/CD. It uses groovy language for the communication.
+5. What is Maven - It is a project management and build automation tool used primarly for java applications.
+
+6. Now for the practical part:-	
+	- I used Terraform to provision aws infrastructure including VPC, security groups and 2 ec2 servers.
+	- Configured 1 ec2 server as jenkins and ansible and another as the production server.
+	- Developed and containerized the application using docker
+	- Stored application code, terraform files, Jenkins file and ansible playbooks in github.
+	- implemented CI/CD pipeline using jenkins to automate build and deployments processes.
+	- configured nginx as a reverse proxy for handling production traffic.
+	- automated deployment on the production server using ansible playbooks.
+	- secured the web-app using https ssl certificates with certbot and let's encrypt
+	- configured docker restart policies for web-app high availability.
+	- destroyed the servers after usage so that I can save the money on aws.
