@@ -1,0 +1,17 @@
+# What I did today?
+1. Attended morning session from 6 AM to 8 AM on the topic of Monitoring the resources, - DataDog, Prometheus, Grafana
+2. What is DataDog - it is a cloud based monitoring agent based tool which allows to monitor the resources and collects the logs of it for future use.
+3. What is Prometheus - It is a open source systems monitoring and alterting toolkit which collects performance metrics from apps and infra such as CPU usage, RAM usage, ROM usage, and requests traffic.
+4. What is Grafana - It is an open source data visualization and observability platform. It allows the user to visualize the real metrics in the form of UI so that it can be easily understandable.
+
+Now for the practical part - 
+1. Worked on Prometheus monitoring by configuring scrape targets and exporting linux server metrics through node exporter.
+2. Used basic commands like systemctl status, curl localhost:9100/metrics, and port verification to validate exporter connectivity.
+3. Integrated prometheus with grafana by adding Prometheus as a data source and validating live metrics.
+4. Created dashboards in grafana for CPU, memory, disk usage, and server uptime monitoring.
+5. Worked with PromQL queries for fetching and filtering infrastructure metrics inside grafana panels.
+6. Explored how exporters expose metrics on ports like 9100 and how prometheus continuously pulls those metrics.
+7. Performed monitoring service validation using commands like systemctl restart prometheus and dashboard refresh testing.
+8. Explored data-dog agent based monitoring for infrastructure and application visibility.
+9. Understood alerting workflows for high cpu usage, memory spikes, and server downtime scenerios.
+10. Practiced real time monitoring troubleshooting by checking exporter status, service logs and metric availibility.
