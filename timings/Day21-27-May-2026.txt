@@ -1,0 +1,15 @@
+# What I have learnt?
+1. Attended morning session on ELK - ElasticSearch, Logstash, Kibana.
+2. What is ELK Stack ? - It is a powerful, open-source collection of three core tools - Elasticsearch, Logstash & Kibana. Designed to collect, process, search & visualize large volumes of data. It is used logs management, infra monitoring and security analytics.
+
+Now for the practical part :- 
+1. Worked on centralized logging using the ELK stack.
+2. Understood how logs are collected, processed, and visualised through the ELK pipeline.
+3. Configured Logstash pipelines to receive and forward the logs into ElasticSearch indices.
+4. Explored how Kibana is used for log searching, filtering, and dashboard creation.
+5. Worked with basic log parsing, and filtering conceps using logstash configuration file.
+6. Validated ELK services with commands like systemctl status to check whether they are running or not.
+7. Used browser access and api checks to verify Elasticsearch indexing and Kibana connectivity.
+8. Learned how centralized logging helps in troubleshooting production issues and monitoring appliction behaviour.
+9. Explored index patterns, log visualization, and real-time log monitoring inside Kibana dashboards.
+10. Practiced checking logs and troubleshooting ELK services using service logs and port validation.
