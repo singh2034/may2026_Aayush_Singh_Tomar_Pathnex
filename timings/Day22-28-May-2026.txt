@@ -1,0 +1,28 @@
+# What I did today?
+1. Attended morning session on Kafka with MSK & Confluent.
+2. What is Kafka ? - It is a service which acts a data collector and provider in a very efficient way. It takes data from producer and send it to the consumer very safely and very fast.
+3. Kafka Architecture - 
+	- There are 8 key components of it.
+	- 1. Producer - It is responsible for sending the data to the kafka topics. It is generally an application or systems that generate data that needs to be consumed in real-time.
+	- 2. Consumer - It is responsible for reading the data from the kafka topics. Consumers can be a part of consumer group which allows them to process messages and fault tolerance.
+	- 3. Broker - Kafka brokers are servers that store the data and serve the client requests.
+	- 4. Topic - A topic is a category or stream to which records are published and each topic is divided into partition.
+	- 5. Partition - A partition is a subset of kafka topic. Partitions allows the kafka service to handle the big amount of data easily.
+	- 6. Zookeeper - It is a distributed coordination service, used by kafka to manage clusters, metadata, and leader election for partitions.
+	- 7. Kafka Connect - it is a framework for inttegrating kafka with external systems like databases, key-value stores, indexes and file systems.
+	- 8. Kafka Streams - It is a library for building real-time streaming applications. It allows real time data processing and transformation.
+
+4. Kafka Data Flow - 
+	- 1. Producer to broker - Producer sends message to kafka broker, where data & messages are written to a specific partition.
+	- 2. Broker to Broker - kafka broker replicates the data for future usage, in case of data insolvency.
+	- 3. Consumer to broker - Consumer reads message from the broker partitions of a topic.
+	- 4. Offset tracking - This is related to fault-tolerant.
+
+5. Kafka Guarantees & Features - 
+	- 1. Durability - Kafka persists data to disk and replicate it among many broker servers.
+	- 2. Scalability - Kafka scales horizontally, allowing us to add more brokers to handle.
+	- 3. High Throughput - It can handle millions of messages per second.
+	- 4. Fault Tolerance - Kafka replicates the data among many broker servers so that if one fails another remains and can continue.
+
+6. Kafka in practice - 
+	- 1. Real-Time Data Streaming - kafka is used in use cases like real-time analytics and event-driven architecture.
