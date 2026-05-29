@@ -1,0 +1,41 @@
+# What I learnt today
+1. I have learnt today how to put SSL/TLS Certificates using Terraform and Ansible.
+2. What is SSL - Secure Sockets Layer certificate encrypt data between a web server and a browser ensuring secure communication. DigiCert is used for it as it a legal authority.
+3. What is TLS - Transport Layer Security is the advance version of SSL.
+
+How to create self signed SSL CA - 
+	- openssl genrsa -out mysite.key 2048
+	- openssl req -new -key mysite.key -out mysite.csr
+	- fill common details - common name(domain name, localhost), Country, state, org etc.
+	- Generate the self signed key
+	- openssl x509 -req -days 365 -in mysite.csr -signkey mysite.key -out mysite.crt
+	- now I have - mysite.key - your private key  & mysite.crt : Your Certificate.
+	- Installing SSL on nginx server
+	- sudo mkdir -p /etc/nginx/ssl/
+	- sudo cp mysite.key mysite.crt /etc/nginx/ssl/
+
+-> Configuring SSL in nginx 
+nginx 
+
+server {
+	listen 443 ssl;
+	server_name localhost;
+
+	ssl_certificate /etc/nginx/ssl/mysite.crt;
+	ssl_certificate_key /etc/nginx/ssl/mysite.key;
+
+	location / {
+		root /var/www/html;
+		index index.html index.htm;
+	}
+
+server {
+	listen 80;
+	server_name localhost;
+	return 301 https://$host$request_url;
+}
+
+}
+
+restart nginx - sudo systemctl restart nginx.service && sudo systemctl reload nginx.service
+sudo nginx -t (test config)
