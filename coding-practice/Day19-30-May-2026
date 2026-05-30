@@ -1,0 +1,79 @@
+# Ansible Fixed
+
+---
+- name: Fixed
+  hosts: all
+
+  tasks:
+    - name: Install
+      yum:
+        name: nginx
+        state: present
+
+# Terraform Fixed
+
+resource "aws_instance" "goodec2" {
+  ami = "0abcd1234abdd"
+  instance_type = "c5.large"
+  tags = {
+    Name = "fixed"
+  }
+}
+
+# Kubernetes fixed
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fixed
+spec:
+  replicas: 2
+  selector:
+    matchlabels:
+      app: fixed
+  template:
+    metadata:
+      labels:
+        app:fixed
+    spec:
+      containers:
+        - name: app
+          image: nginx
+
+# jenkins - matrix build
+
+pipeline {
+    agent any
+    environment {
+          INSTITUTE_NAME = "Pathnex"
+    }
+    matrix {
+      axes {
+        axis {
+          name "JAVA_VERSION"
+          values '8', '11', '17'
+        }
+      }
+      stages {
+        stage('Build') {
+          steps {
+            sh "echo Building with Java $JAVA_VERSION"
+          }
+        }
+      }
+    }
+}
+
+# Gitlab CI - matrix
+
+stages:
+  - build
+
+build:
+  stage: build
+  image: maven:3.8.1-jdk-17
+  parallel:
+    matrix:
+      - JAVA_VERSION: ['8', '11', '17']
+  script:
+    - echo "Building with Java $JAVA_VERSION"

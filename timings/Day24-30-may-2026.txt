@@ -1,0 +1,9 @@
+# What I have learnt today
+1. Took SRE class in the morning and practiced it from the notes
+2. What is SRE - Site Reliability Engineering.
+3. If something is made, it doesn't mean it should be abandoned, maintenance should be there to take care for the application interface and infrastrucre of it.
+4. 3 main points to learn SLO, SLA, SLI
+5. SLA - Service Level Agreement.
+6. SLO - Service Level Objective.
+7. SLI - Service Level Indicator.
+8. Error Budget, Hard Freeze and Cold Freeze, Monitoring tools used - Grafana, Loki, Prometheus etc.., automation tools used- Ansible, Terraform, and the other things.
