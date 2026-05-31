@@ -1,0 +1,142 @@
+# Terraform
+
+provider 'aws' {
+    region = "ap-south-1"
+}
+
+resource "aws_vpc" "pathnexVPC" {
+    cidr_block = "10.10.0.0"
+}
+
+resource "aws_subnet" "pathnexSubnet" {
+    vpc_id = aws_vpc.pathnexvpc.id
+    cidr_block = "10.10.1.0/24"
+}
+
+resource "aws_internet_gateway" "pathnexIGW" {
+    vpc_id = aws_vpc.PathnexVPC.id
+
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = aws_internet_gateway.PathnexIGW.id
+    }
+}
+
+resource "aws_instance" "ec2-pathnex" {
+    ami = "ami-0abcd1234abcd"
+    instance_type = "r6i.4xlarge"
+    subnet_id = aws_subnet.pathnexsubnet.id
+
+    tags = {
+        Name = "pathnex-ec2-testing"
+    }
+}
+
+# Ansible - Install nginx and deploy html file
+
+---
+- name: Installing nginx and deploying html file
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install Nginx
+      package: 
+        name: nginx
+        state: present
+
+    - name: Start and enable nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Deploy HTML file
+      copy:
+        src: index.html
+        dest: /usr/share/nginx/html/index.html
+
+# Kubernetes - Create Deployment + Service
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nginx-deployment
+spec: 
+    replicas: 2
+    selector:
+        matchlabels:
+            app: nginx
+    template:
+        metadata:
+            labels:
+                app: nginx
+        spec:
+            containers:
+            - name: nginx
+              image: nginx
+              ports:
+              - containerPort: 80
+
+---
+apiVersion: v1
+kind: service
+metadata:
+    name: nginx-service
+spec:
+    selector:
+        app: nginx
+    ports:
+    - port: 80
+      targetPort: 80
+    type: LoadBalancer
+
+
+# Shell Script : Print CPU, Memory and Disk
+
+#!/usr/bin/bash
+echo "CPU:"
+lscpu
+
+echo "Memory"
+free -h
+
+echo "Disk"
+df -h
+
+# Jenkins Pipeline - Scheduled Build
+
+pipeline {
+    agent any
+    environment {
+        INSTITUTE_NAME = "Pathnex"
+    }
+    triggers {
+        cron('H 2 * * *')
+    }
+    stages {
+        stage('checkout') {
+            steps {
+                git url: "https://github.com/Pathnex/Sample-java-app.git"
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+    }
+}
+
+# Gitlab CI - Scheduled Pipeline
+
+stages:
+    - build
+
+build:
+    stage: build
+    image: maven:3.8.1-jdk-17
+    script:
+        - git clone https://github.com/Pathnex/sample-java-app.git
+        - cd sample-java-app
+        - mvn clean package
