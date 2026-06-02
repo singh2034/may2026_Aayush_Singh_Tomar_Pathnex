@@ -1,0 +1,6 @@
+Let's start with my introduction. As you are aware, my name is Aayush and I have around 3 years of experience as a Site Reliability Engineer (SRE).
+I started my career as a trainee where my primary responsibilities were monitoring infrastructure and applications, handling alerts, and troubleshooting production issues.
+Talking about cloud technologies, I have hands-on experience working with AWS services such as EC2, IAM, VPC, S3, Route53, CloudWatch, CloudTrail, Load Balancers, Auto Scaling Groups, SNS, SQS, Lambda, Systems Manager, RDS, EKS, and MSK.
+Apart from AWS, I work with Linux, Datadog for monitoring and observability, Git and GitHub for version control, and Terraform for infrastructure provisioning and management.
+In my day-to-day activities, I monitor production environments, manage alerts and dashboards, troubleshoot infrastructure and application issues, support deployments, perform root cause analysis, manage EKS clusters, monitor MSK services, and work closely with development teams to ensure application reliability and availability while meeting defined SLOs.
+Over the last 3 years, I have developed strong skills in incident management, monitoring, cloud operations, and maintaining highly available AWS environments.

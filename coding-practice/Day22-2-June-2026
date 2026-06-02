@@ -1,0 +1,106 @@
+# Ansible - Create Role Structure
+
+---
+- name: Install httpd
+  yum:
+    name: httpd
+    state: present
+
+# Terraform - DynamoDB Table
+
+resource "aws_dynamodb_table" "pathnexTable" {
+  name = "PathnexTrainingTable"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key = "ID"
+
+  attribute {
+    name = "ID"
+    type = "S"
+  }
+
+  tags = {
+    Name = "Pathnex-DOB"
+  }
+}
+
+# Kubernetes - StatefulSet
+
+apiVersion: apps/v1
+kind: Statefulset
+metadata:
+  name: pathnex-db
+spec:
+  serviceName: "pathnex"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pathnex-db
+  template:
+    metadata:
+      labels:
+        app: pathnex-db
+      spec:
+        containers:
+          - name: db
+            image: mysql
+            env:
+              - name: MYSQL_ROOT_PASSWORD
+              value: "Pathnex123"
+
+# Shell Script - check service running
+
+#!/bin/bash
+
+SERVICE="sshd"
+
+if systemctl is-active --quiet $SERVICE; then
+  echo "$SERVICE is running"
+else
+  echo "$SERVICE is not running"
+fi
+
+# Artificats promotion
+# Jenkins pipeline - Promote Artifacts
+
+pipeline {
+  agent any
+  environment {
+    INSTITUTE_NAME = "Pathnex"
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh 'mvn clean package'
+      }
+    }
+    stage('Promote') {
+      steps {
+        input message: "promote artificats to staging?"
+        sh 'echo "Promoting artifacts for $INSTITUTE_NAME"'
+      }
+    }
+  }
+}
+
+# Gitlab CI - Artifacts promotion
+
+stages:
+  - build
+  - promote
+
+build:
+  stage: build
+  image: maven:3.8.1-jdk-17
+  script:
+    - mvn clean package
+  artificats:
+    paths:
+      - target/*.jar
+    expire_in: 1 week
+
+promote:
+  stage: promote
+  image: alpine:latest
+  script:
+    - echo "Promoting artifacts for Pathnex"
+  when: manual
