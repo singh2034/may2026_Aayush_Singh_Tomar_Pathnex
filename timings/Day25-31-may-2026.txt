@@ -1,0 +1,18 @@
+# What I did today?
+1. Attended morning class on DevSecOps - SCA, SAST, DAST and other Security measurement tools.
+2. SAST - Static Application Securiyt Testing :- 
+	- These tools scan and discover the flaws in a coding repo before the deployment.
+	- Some of the tools are :-
+	- SonarQube - Analyze code for bugs, code vulnerablities.
+	- Semgrep - fast, syntax-aware code scanner.
+	- bandit - Python-Specific security linter.
+	- ESlint - For jS and nodejs based applications.
+
+3. SCA - Software Composition Analysis - Analyzed third-party and open-source dependencies, for known vulnerabilities.
+4. Container Security - scans and secure container images and registrics. - Docker bench is best for scanning it.
+5. IAC Security - detects misconfiguration in terraform, cloudformation, kubernetes, yaml etc - best tool is TFlint.
+6. DAST - Dynamic Application Securiyt Testing - Simulates attacks on running web apps or softwares to find vulnerabilites. - best tools is OWASP ZAP.
+7. Secrets Management & Detection - Protects sensitive data like api keys, passwords, and tokens. - best tools - hashicorp vault.
+8. Runtime Security monitoring - Monitors applicatons, containers, and infra, at runtime for suspicious behaviour.
+9. Security logging and siem - collects and analyze security data from the infra.
+10. CI/CD security steps using jenkins and gitlab CI, make steps and scripts to execute at a level of deployments.
