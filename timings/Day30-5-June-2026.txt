@@ -1,0 +1,4 @@
+# What I did today?
+1. Practices Coding of day 19 devops l1 week 3 and pushed the code on github and made pr.
+2. Recorded introduction and sent to santosh on telegram.
+3. Learnt and revised kubernetes interview questions and practised the same in the evening may batch class with the peers.
