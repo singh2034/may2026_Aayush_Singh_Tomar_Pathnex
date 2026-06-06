@@ -1,0 +1,78 @@
+# Ansible - Fixed
+
+---
+- name: Install Stuff
+  hosts: all
+
+  tasks:
+    - name: Install
+      yum:
+        name: httpd
+        state: present
+
+# Terraform - Fixed
+
+resource "aws_instance" "Great" {
+    ami = "ami-0abcd1234abcd"
+    instance_type = "c6i.8xlarge"
+}
+
+# Kubernetes - Fixed
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: fixed-app
+spec:
+    replicas: 3
+selector:
+    matchLabels:
+        app: fixed
+template:
+    metadata:
+        labels:
+            app: fixed
+    spec:
+        containers:
+            - name: app
+              image: nginx
+
+# Secrets & Credentials
+
+# Jenkins pipeline - using credentials
+
+pipeline {
+    agent any
+    environment {
+        INSTITUTE_NAME = "Pathnex"
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/Pathnex/sample-java-app.git'
+            }
+        }
+        stage('Use Secret') {
+            steps {
+                withCredentials([string(credentialsId: 'Pathnex_API_KEY', variable: 'API_KEY')]) {
+                    sh 'echo "Using secret $API_KEY for $INSTITUTE_NAME"'
+                }
+            }
+        }
+    }
+}
+
+# Gitlab CI - Using CI/CD Variables
+
+stages:
+    - build
+
+variables:
+    INSTITUTE_NAME: "Pathnex"
+    API_KEY: "PLACEHOLDER_SECRET"
+
+build:
+    stage: build
+    image: alpine:latest
+    script:
+        - echo "Using secret $API_KEY for $INSTITUTE_NAME"

@@ -1,0 +1,4 @@
+#What I did today?
+1. practiced day 20 devops l1 code and understand it.
+2. Recorded intro video and sent it to Santosh.
+3. Practices kubernetes
