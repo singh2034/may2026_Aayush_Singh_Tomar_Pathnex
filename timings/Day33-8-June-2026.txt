@@ -1,0 +1,4 @@
+# What I did today?
+1. Practiced Code of Devops Week4 day22 L1.
+2. Revised Helm & ArgoCD.
+3. Created Introduction Video.
