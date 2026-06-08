@@ -1,0 +1,5 @@
+# What I did today?
+1. Practiced code today devops l1 week 3 day 21 speed test
+2. Pushed it and made PR for the branch
+3. Recorded Introduction and sent it to Santosh
+4. Practices HELM and previous topics today in the evening session of May batch

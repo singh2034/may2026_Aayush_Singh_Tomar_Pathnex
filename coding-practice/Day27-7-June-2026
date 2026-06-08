@@ -1,0 +1,122 @@
+# Ansible - Task
+
+---
+- name: Install Nginx and Enable the service
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: install nginx
+      package:
+        name: nginx
+        state: present
+
+    - name: Enable & Start Nginx Service
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+# Terraform - Task
+provider "aws" {
+    region = "ap-south-a"
+}
+
+resource "aws_instance" "PathnexEC2" {
+    ami = "0abcd12340abcd"
+    image_type = "cxi.4xlarge"
+
+    tags = {
+        Name = "Pathnex-student-ec2"
+        Owner = "PathnexStudent"
+    }
+}
+
+# Kubernetes - 3 Replica Deployment
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nginx-deployment
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: nginx
+        spec:
+            containers:
+                - name: nginx
+                  image: nginx
+                  ports: 
+                    - containerPort: 80
+
+# Shell Script - Print Date, uptime, disk usage
+
+# Print Date
+echo "Today's Date"
+date
+
+# System Uptime
+echo "System Uptime"
+uptime -p
+
+# Disk usage
+echo "Disk Usage"
+du -h
+
+# Jenkins Pipeline - Deploy to Multiple Environments
+
+pipeline {
+    agent any
+    environment {
+        INSTITUTE_NAME = "Pathnex"
+    }
+    stages {
+        stage('Deploy to Dev') {
+            steps {
+                sh 'echo "Deploying $INSTITUTE_NAME to Dev environment"'
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                input message: "Approve Staging Deployment?"
+                sh 'echo "Deploying $INSTITUTE_NAME to Staging Environment"'
+            }
+        }
+        stage('Deploy to prod'){
+            steps {
+                input message: "Approve Prod Deployment?"
+                sh 'echo "Deployment $INSTITUTE_NAME to Prod environment"'
+            }
+        }
+    }
+}
+
+# Gitlab CI - Multi Environment
+
+stages:
+    - deploy
+
+variables:
+    INSTITUTE_NAME: "Pathnex"
+
+deploy-dev:
+    stage: deploy
+    image: alpine:latest
+    script:
+        - echo "Deploying $INSTITUTE_NAME to Dev environment"
+
+deploy-staging:
+    stage: deploy
+    image: alpine:latest
+    script:
+        - echo "Deploying $INSTITUTE_NAME to Staging environment"
+    when: manual
+
+deploy-prod:
+    stage: deploy
+    image: alpine:latest
+    script:
+        - echo "Deploying $INSTITUTE_NAM to Prod environment"
+    when: manual
