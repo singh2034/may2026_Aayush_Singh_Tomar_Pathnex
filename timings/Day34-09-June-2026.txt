@@ -1,0 +1,4 @@
+# What I did today?
+1. Practiced coding from github day 23 week 2 l1 devops. Created PR
+2. Recorded intro and sent it to Santosh on Telegram.
+3. Learnt Helm, ArgoCD, Terraform, Ansible revised them.
