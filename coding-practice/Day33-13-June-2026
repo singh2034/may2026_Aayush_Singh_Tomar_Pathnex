@@ -1,0 +1,71 @@
+# Ansible - Fixed
+
+---
+- name: Install Nginx
+  hosts: all
+  tasks:
+    - name: missing
+      yum:
+        name: nginx
+        state: present
+
+# Terraform - fixed
+
+resource "aws_s3" "GoodBucket" {
+    bucket = "pathnex-bucket"
+    acl = "public-read"
+}
+
+# Kubernetes - Fixed
+apiVersion: v1
+kind: pod
+metadata:
+    - name: fixedpod
+spec: 
+    containers:
+        - name: app
+          image: nginx
+
+
+# Jenkins Pipeline - Automatic Rollback
+pipeline {
+    agent any
+    environment {
+        INSTITUTE_NAME = "Pathnex"
+        TEAM = "DevOps"
+        ENV = "prod"
+    }
+    stages {
+        stage('Deploy') {
+            steps {
+                script {
+                    try {
+                        sh 'echo "Deploying $INSTITUTE_NAME app in $ENV for $TEAM"'
+                        sh 'exit 1' // simulate failure
+                    } catch (Exception e) {
+                        echo "Deployment failed. Rolling back $INSTITUTE_NAME app in $ENV"
+                    }
+                }
+            }
+        }
+    }
+}
+
+# Gitlab CI - Rollback Strategy
+
+stages:
+    - deploy
+
+variables:
+    INSTITUE_NAME: "Pathnex"
+    TEAM = "Devops"
+    ENV = "prod"
+
+deploy:
+    stage: deploy
+    image: alpine:latest
+    script:
+        - echo "Deploying $INSTITUTE_NAME app in $ENV for $TEAM"
+        - exit 1
+    after_script:
+        - echo "Deployment failed. Rolling back $INSTITUTE_NAME app in $ENV"
