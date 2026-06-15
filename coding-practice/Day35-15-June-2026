@@ -1,0 +1,126 @@
+# Ansible - add user
+---
+- name: Add user
+  hosts: all
+  become: yes
+
+  tasks: 
+    - user:
+        name: pathnex-admin
+        shell: /bin/bash
+
+    - authorized_key:
+        user: pathnex-admin
+        key: "{{ lookup('file', 'id_rsa.pub') }}"
+
+# Terrform
+
+resource "aws_instance" "ec2" {
+    ami = "ami-0abcd1234abcd"
+    instance_type = "t2.micro"
+
+    tags = {
+        Project = "Pathnex-Training"
+    }
+}
+
+# Kubernetes
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: app
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: demo
+    template:
+        metadata:
+            labels:
+                app: demo
+        spec:
+            containers:
+            - name: nginx
+              image: nginx
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: app
+spec:
+    selector:
+        app: demo
+    ports:
+    - port: 80
+    type: ClusterIP
+
+# Shell Scipt
+#!/bin/bash
+
+echo "1.IP 2.Disk 3.Memory"
+read n
+
+case $n in
+1) hostname -I ;;
+2) df -h ;;
+3) free -h ;;
+esac
+
+# Jenkins
+pipeline {
+    agent any
+
+    environment {
+        INSTITUTE_NAME = "Pathnex"
+        TEAM = "DevOps"
+        ENV = "prod"
+        PROJECT = "Pathnex-Training"
+    }
+
+    stages {
+        stage('Infrastructure') {
+            steps { sh 'terraform apply -auto-approve' }
+        }
+
+        stage('App Deployment') {
+            steps {
+                sh 'ansible-playbook user.yml'
+                sh 'kubectl apply -f deploy.yaml'
+            }
+        }
+
+        stage('Monitoring Checks') {
+            steps { sh './menu.sh' }
+        }
+    }
+}
+
+# GitLab CI
+
+stages:
+    - Infrastructure
+    - app_deployment
+    - monitoring_checks
+
+variables:
+    INSTITUTE_NAME: "Pathnex"
+    TEAM: "DevOps"
+    ENV: "prod"
+    PROJECT: "Pathnex-Training"
+
+infrastrucutre:
+    stage: infrastrucutre
+    script:
+        - terraform apply -auto-approve
+
+app_deployment:
+    stage: infrastructure
+    script:
+        - ansible-playbook user.yml
+        - kubectl apply -f deploy.yaml
+
+monitoring_checks:
+    stage: monitoring_checks
+    script:
+        - ./menu.sh
