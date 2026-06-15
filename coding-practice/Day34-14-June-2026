@@ -1,0 +1,282 @@
+# Terraform - Main.tf
+
+provider "aws" {
+    region = "us-east-1"
+}
+
+resource "aws_key_pair" "pathnex" {
+    key_name = "pathnex-key"
+    public_key = file("~/.ssh/id_rsa.pub")
+}
+
+resource "aws_security_group" "pathnex_sg" {
+    name = "pathnex-sg"
+
+    ingress {
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        from_port = 80
+        to_port = 80
+        protocol = 'tcp'
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+}
+
+resources "aws_instance" "pathnex" {
+    ami = "ami-0acbd12340acbd"
+    instance_type = "c5.xlarge"
+    key_name = aws_key_pair.pathnex.key_name
+    vpc_security_groups_ids = [aws_security_group.pathnex_sg.id]
+
+    tags = {
+        Name = "Pathnex-Training"
+    }
+}
+
+resource "aws_volume_attachement" "ebs_attach" {
+    device_name = "/dev/sdf"
+    volume_id = aws_ebs_volume.pathnex_ebs.id
+    instance_id = aws_instance.pathnex.id
+}
+
+# Variables.tf
+
+variable "region" {
+    default = "us-east-1"
+}
+
+# outputs.tf
+output "instance_public_ip" {
+    value = aws_instance.pathnex.public_ip
+}
+
+# Ansible - deploy files
+
+---
+- name: configure nginx
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Install nginx
+      package:
+        name: nginx
+        state: present
+
+    - name: Deploy HTML page
+      copy:
+        dest: /usr/share/nginx/html/index.html
+        content: |
+            <html>
+            <body>
+            <h1> welcome to pathnex </h1>
+            </body>
+            </html>
+
+    - name: enable nginx
+      service:
+        name: nginx
+        enabled: yes
+        state: started
+
+# Kubernetes
+
+#pvc.yaml
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nginx-pvc
+spec:
+    accessModes:
+        -  ReadWriteOnce
+    
+    resources:
+        requests:
+            storage: 1Gi
+
+# Deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nginx-deployment
+
+spec:
+    replicas: 2
+
+    selector:
+        matchLabels:
+            app: nginx
+    
+    template:
+        metadata:
+            labels:
+                app: nginx
+
+        spec:
+            containers:
+            - name: nginx
+              image: nginx:latest
+
+              ports:
+              - containerPort: 80
+
+              volumeMounts:
+              - mountPath: /usr/share/nginx/html
+                name: web-storage
+
+            volumes:
+            - name: web-storage
+              persistentVolumeClaim:
+                claimName: nginx-pvc
+
+# Service.yaml
+apiVersion: v1
+kind: service
+metadata:
+    name: nginx-services
+
+spec:
+    type: NodePort
+
+    selector:
+        app: nginx
+    
+    ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
+
+# shell script
+
+#!/bin/bash
+
+echo "===== CPU ====="
+top -bn1 | grep "Cpu"
+
+echo
+echo "==== MEMORY ===="
+free -h
+
+echo
+echo "==== Disk ===="
+df -h
+
+echo 
+echo "==== IP ===="
+hostname -I
+
+echo
+echo "==== Top Processes ===="
+ps -eo pid,comm,%cpu --sort=%cpu | head -n 6
+
+# Jenkins
+
+pipeline {
+    agent any
+
+    environment {
+        INSTITUTE_NAME = "Pathnex"
+        TEAM = "DevOps"
+        ENV = "prod"
+        PROJECT = "Pathnex-Training"
+    }
+
+    stages {
+
+        stage('Infrastructure') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform init'
+                    sh 'terraform apply -auto-approve'
+                }
+            }
+        }
+        stage('App Deployment') {
+            steps {
+                dir('ansible') {
+                    sh 'ansible-playbook -i inventory.ini nginx.yml'
+                }
+
+                dir('kubernetes') {
+                    sh 'kubectl apply -f pvc.yaml'
+                    sh 'kubectl apply -f deployment.yaml'
+                    sh 'kubectl apply -f service.yaml'
+                }
+            }
+        }
+
+        stage('Monitoring Checks') {
+            steps {
+                dir('scripts') {
+                    sh './system_checks.sh'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Pipeline completed"
+        }
+        success {
+            echo "Deployment successful."
+        }
+        failure {
+            echo "Deployment failed."
+        }
+    }
+}
+
+# gitlab  - CI
+stages:
+    - infrastructure
+    - app_deployment
+    - monitoring_checks
+
+variables:
+    INSTITUTE_NAME: "Pathnex"
+    TEAM: "DevOps"
+    ENV: "prod"
+    PROJECT: "Pathnex-Training"
+
+infrastructure:
+    stage: infrastructure
+
+    script:
+        - cd terraform
+        - terraform init
+        - terraform apply -auto-approve
+
+app_deployment:
+    stage: app_deployment
+
+    script:
+        - cd ansible
+        - ansible-playbook -i inventory.ini nginx.yaml
+
+        -cd ../kubernetes
+        - kubectl apply -f pvc.yaml
+        - kubectl apply -f deployment.yaml
+        - kubectl apply -f service.yaml
+
+monitoring_checks:
+    stage: monitoring_checks
+
+    script:
+        - cd scripts
+        - chmod +x system_checks.sh
+        - ./system_checks.sh
